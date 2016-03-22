@@ -1,2 +1,97 @@
-Sort Methods
+package sortMethods;
 
+import java.util.Arrays;
+
+public class selectingSort {
+
+	public static void bubbleSort(int[] a) {
+		for (int i = 0; i < a.length - 1; i++) {
+			for (int j = 0; j < a.length - 1; j++) {
+				if (a[j] > a[j + 1]) {
+					swap(a, j, j + 1);
+				}
+			}
+		}
+	}
+
+	public static void selectionSort(int[] a) {
+		for (int i = 0; i < a.length - 1; i++) {
+			int min = i;
+			for (int j = i + 1; j < a.length; j++) {
+				if (a[j] < a[min]) {
+					min = j;
+				}
+			}
+			swap(a, i, min);
+		}
+	}
+
+	public static void insertionSort(int[] a) {
+		for (int i = 0; i < a.length - 1; i++) {
+			if (a[i + 1] < a[i]) {
+				for (int j = i + 1; j > 0; j--) {
+					if (a[j] < a[j - 1]) {
+						swap(a, j, j - 1);
+					}
+				}
+			}
+		}
+	}
+
+	public static void mergeSort(int[] a) {
+		if (a.length <= 2) {
+			int[] left = Arrays.copyOfRange(a, 0, a.length / 2);
+			int[] right = Arrays.copyOfRange(a, a.length / 2, a.length);
+
+			merge(a, left, right);
+		} else {
+			int[] left = Arrays.copyOfRange(a, 0, a.length / 2);
+			int[] right = Arrays.copyOfRange(a, a.length / 2, a.length);
+			mergeSort(left);
+			mergeSort(right);
+
+		}
+
+	}
+
+	public static void merge(int[] result, int[] left, int[] right) {
+		int leftIndex = 0;
+		int rightIndex = 0;
+		for (int i = 0; i < result.length; i++) {
+			if (rightIndex >= right.length) {
+				result[i] = left[leftIndex];
+				break;
+			} else if (leftIndex >= left.length) {
+				result[i] = right[rightIndex];
+				break;
+			} else if ((left[leftIndex] <= right[rightIndex])) {
+				result[i] = left[leftIndex];
+				leftIndex++;
+			} else {
+				result[i] = right[rightIndex];
+				rightIndex++;
+			}
+		}
+	}
+
+	public static void swap(int[] a, int i, int j) {
+		int temp = a[i];
+		a[i] = a[j];
+		a[j] = temp;
+	}
+
+	public static void main(String[] args) {
+
+		// int[] a = { 22, 18, 12, -4, 27, 30, 36, 50, 7, 68, 91, 56, 2, 85, 42,
+		// 98, 25 };
+		int[] b = { 22, 18, 12, -4, 58, 7, 31, 42 };
+		// int[] b = { 42,31 };
+		// selectionSort(a);
+		// bubbleSort(a);
+		// insertionSort(a);
+
+		mergeSort(b);
+		System.out.println(Arrays.toString(b));
+
+	}
+}
