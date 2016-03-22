@@ -58,19 +58,13 @@ public class selectingSort {
 		int leftIndex = 0;
 		int rightIndex = 0;
 		for (int i = 0; i < result.length; i++) {
-			if (rightIndex >= right.length) {
-				result[i] = left[leftIndex];
-				break;
-			} else if (leftIndex >= left.length) {
-				result[i] = right[rightIndex];
-				break;
-			} else if ((left[leftIndex] <= right[rightIndex])) {
-				result[i] = left[leftIndex];
-				leftIndex++;
-			} else {
-				result[i] = right[rightIndex];
-				rightIndex++;
+			if(rightIndex>=right.length || (leftIndex<left.length && left[leftIndex]<=right[rightIndex])){
+				result[i]=left[leftIndex];
+				leftIndex++;}
+			else{result[i]=right[rightIndex];
+			rightIndex++;
 			}
+			
 		}
 	}
 
