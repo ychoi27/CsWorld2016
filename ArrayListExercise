@@ -1,0 +1,92 @@
+import java.util.ArrayList;
+
+public class test1 {
+
+	public static void addStars(ArrayList<String> list) {
+		for (int i = 0; i < list.size(); i += 2) {
+			list.add(i, "*");
+		}
+	}
+
+	public static void removeStars(ArrayList<String> list) {
+		for (int i = 1; i < list.size(); i++) {
+			list.remove(i);
+		}
+	}
+
+	public static ArrayList<Integer> intersect(ArrayList<Integer> list1, ArrayList<Integer> list2) {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		int i = 0;
+		int j = 0;
+		while (i < list1.size() && j < list2.size()) {
+			if (list1.get(i) == list2.get(j)) {
+				list.add(list1.get(i));
+				i++;
+				j++;
+			} else if (list1.get(i) > list2.get(j)) {
+				j++;
+			} else {
+				i++;
+			}
+		}
+		return list;
+	}
+
+	public static void reverse(ArrayList<Integer> list) {
+		for (int i = 0; i < list.size() / 2; i++) {
+			int sub = list.get(i);
+			list.set(i, list.get(list.size() - 1 - i));
+			list.set(list.size() - 1 - i, sub);
+		}
+	}
+
+	public static void capitalzePlurals(ArrayList<String> list) {
+		for (int i = list.size() - 1; i >= 0; i--) {
+			String str = list.get(i);
+			if (str.endsWith("s")) {
+				str = str.toUpperCase();
+				list.set(i, str);
+			}
+		}
+	}
+
+	public static void removePlurals(ArrayList<String> list) {
+		for (int i = 0; i < list.size(); i++) {
+			String str = list.get(i);
+			if (str.endsWith("s")) {
+				list.remove(i);
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<Integer> list1 = new ArrayList<Integer>();
+		ArrayList<Integer> list2 = new ArrayList<Integer>();
+		list1.add(1);
+		list1.add(4);
+		list1.add(5);
+		list1.add(7);
+		list2.add(2);
+		list2.add(4);
+		list2.add(7);
+		list2.add(9);
+		reverse(list1);
+		System.out.println(list1);
+		System.out.println(intersect(list1, list2));
+		ArrayList<String> list3 = new ArrayList<String>();
+		list3.add("ab");
+		list3.add("cds");
+		list3.add("ef");
+		list3.add("hhhhhhhhhs");
+		list3.add("his");
+		list3.add("hhhhhhhhhs");
+		list3.add("gi");
+		list3.add("sis");
+		System.out.println(list3);
+		removePlurals(list3);
+		System.out.println(list3);
+
+	}
+
+}
